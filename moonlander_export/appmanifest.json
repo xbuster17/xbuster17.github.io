@@ -1,6 +1,6 @@
 ﻿{
-	"name": "New project",
-	"short_name": "New project",
+	"name": "lunar lander",
+	"short_name": "lunar lander",
 	"start_url": "index.html",
 	"display": "standalone",
 	"orientation": "any",

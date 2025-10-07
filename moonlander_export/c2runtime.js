@@ -24570,6 +24570,7 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Physics.prototype.acts.SetWorldGravity,
 	cr.behaviors.Physics.prototype.acts.SetAngularDamping,
 	cr.plugins_.Text.prototype.acts.SetText,
+	cr.system_object.prototype.exps.round,
 	cr.plugins_.Sprite.prototype.acts.SetInstanceVar,
 	cr.system_object.prototype.exps.sqrt,
 	cr.behaviors.Physics.prototype.exps.VelocityX,
