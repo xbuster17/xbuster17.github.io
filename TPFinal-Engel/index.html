@@ -1,0 +1,62 @@
+<doctype html>
+<html>
+<head>
+<title>FCG 2022 - TP final</title>
+
+<!-- estilo-->
+<link href="style.css" rel="stylesheet">
+
+<script type="text/javascript" id="includedscript" src="boxdrawer.js"></script>
+<script type="text/javascript" id="includedscript" src="lightview.js"></script>
+<script type="text/javascript" id="includedscript" src="project5.js"></script>
+<script type="text/javascript" id="includedscript" src="ejercicio.js"></script>
+<!-- <script type="text/javascript" id="includedscript" src="l_tree.js"></script> -->
+<script type="text/javascript" src="objmesh.js"></script>
+
+</head>
+<body onresize="WindowResize()">
+    <!-- canvas (WebGL)-->
+    <div id="canvas-div"><canvas id="canvas"></canvas></div><div id="controls-div">
+    <!-- menu y controles-->
+    <div id="controls">
+        <div class="control-group"><canvas id="lightcontrol"></canvas><div id="lightcontrol-label">Dirección de la Luz</div></div>
+        <!-- <div class="control-group"> -->
+            <!-- <div ><input id="show-box" name="show-box" type="checkbox" onchange="DrawScene()" checked /><label for="show-box"> Mostrar caja</label></div> -->
+            <!-- <div class="control"><input id="show-texture" name="show-texture" type="checkbox" onchange="ShowTexture(this)" checked /><label for="show-texture"> Mostrar textura</label></div> -->
+            <!-- <div class="control"><input id="swap-yz" name="swap-yz" type="checkbox" onchange="SwapYZ(this)" /><label for="swap-yz"> Intercambiar Y-Z</label></div> -->
+            <!-- <div class="control"><input id="auto-rotate" name="auto-rotate" type="checkbox" onchange="AutoRotate(this)"/><label for="auto-rotate"> Calesita</label></div> -->
+            <!-- <div class="control"><input id="rotation-speed" type="range" min="1" max="100" value="50" disabled/></div> -->
+            <!-- <div class="control"><span id="shininess-label">Intensidad:</span><span id="shininess-value">1</span><input id="shininess-exp" type="range" min="0" max="100" value="50" oninput="SetShininess(this)"/></div> -->
+        <!-- </div> -->
+        <div class="tree_control">
+            <!-- <div class="control">Modelo:<br/><input id="obj" type="file" onchange="LoadObj(this)" accept=".obj"/></div> -->
+            <!-- <div class="control">Textura:<br/><input id="texture" type="file" onchange="LoadTexture(this)" accept="image/*"/></div> -->
+            <!-- <div class="control"><input id="min" type="range" min="1" max="100" value="50"/>min</div>
+            <div class="control"><input id="max" type="range" min="1" max="100" value="50"/>max</div> -->
+            <input id="Di" type="number" size=3 value=2 min=0.1 max=3 step=0.1 onchange=tree_set_rad_influence(this)> Di
+            <input id="Dk" type="number" size=3 value=.1 min=0.1 max=3 step=0.1 onchange=tree_set_kill_distance(this)> Dk
+
+            <button type="button" onclick="generate_tree()">generate tree</button>
+            <div id="spaces_div">
+                <div><input id="show_mesh"   type="checkbox" checked onchange="tree_show_mesh(this)"/>mesh</div>
+                <div><input id="show_leaves" type="checkbox" checked onchange="tree_show_leaves(this)"/>attractors</div>
+                <div><input id="show_spaces" type="checkbox" checked onchange="tree_show_spaces(this)"/>envelopes</div>
+                <button type="button" onclick="spaces_add_click()">+</button>
+                <button type="button" onclick="spaces_rm_click()">-</button>
+            </div>
+
+            <!-- <input type="color"> -->
+            <!-- <input type="number" size=5 onchange = "update_f(this)"> -->
+            <!-- <input type="radio"> -->
+            <!-- <div><input type="range"  size=5></div> -->
+            <!-- <input type="reset"> -->
+        
+
+        </div>
+        <div class="control-group">
+            <img id="texture-img" />
+        </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+Informe
+Generador de arboles procedurales usando space colonizaton en 3d con envolventes.
+Basado en: http://algorithmicbotany.org/papers/colonization.egwnp2007.pdf
+
+El algoritmo consiste en generar puntos al azar (hojas) que atraen al segmento mas cercano creando uno nuevo en direccion del promedio
+de todos los atractores, repitiendo hasta que se acaben los puntos que esten dentro del radio de influencia (Di). ademas, si una hoja 
+se encuentra a distancia menor a Dk (kill distance) de una rama, la hoja es descartada de la proxima iteracion.
+El segmento raiz se inicializa con un radio inicial en la posicion (x:0, y:-1, z:0).
+Terminadas todas las iteraciones nos quedamos entonces con una lista de segmentos interconectados que representan cada rama del arbol.
+(this.generate_tree, this.generate_leaves)
+
+Luego se procede a la generacion del mesh utilizando los segmentos previamente calculados mas un par de atributos esteticos:
+- el radio de cada segmento, que es calculado decrementando el radio del padre.
+- un booleano que indica si la rama no tiene hijos
+Los segmentos son aproximados con cilindros deformados sobre el plano XY, esto minimiza agujeros comparado con la rotacion, 
+pero introduce cilindros aplanados.
+(agregar_segmento)
+
+envolventes:
+Las envolventes definen subespacios del cubo en donde se crearan las hojas. se construyen a partir de una funcion (x,y)->radio que
+dado un angulo X: entre 0 y PI e Y: angulo entre 0 y 2PI retorna el radio de ese punto de la esfera. 
+esta misma funcion luego se utiliza para adquirir puntos en el perimetro de la forma para luego contraerlos hacia un punto al azar
+entre el centro del envolvente y su perimetro.
+Las mallas para las envolventes se triangulan creando un triangle strip por cada rodaja y se dibujan con transparencia,
+primero las caras traseras y luego las delanteras con gl.enable(gl.CULL_FACE), gl.cullFace(gl.FRONT) y gl.cullFace(gl.BACK);
+(create_sphere)
+
+Las envolventes se pueden generar dinamicamente desde la interfaz grafica con los botones `+` y `-`. cada envolvente tiene los
+siguientes parametros: funcion, posicion x,y,z, radio, cantidad de hojas, tendencia a perimetro.
